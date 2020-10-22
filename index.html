@@ -3,18 +3,22 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta name="referrer" content="origin">
     <title>Marked in the browser</title>
 </head>
 
-<script src="./react.development.js" referrerpolicy="origin"></script>
-<script src="./react-dom.development.js"></script>
-<script src="./material-ui.production.min.js" ></script>
-<script src="./babel.min.js"></script>
-<!-- Fonts to support Material Design -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
-<!-- Icons to support Material Design -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+<!-- Required styles for Material Web -->
+<link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+
+<!-- Required Material Web JavaScript library -->
+<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<style>
+    body {
+        margin: 0px;
+    }
+</style>
 
 <script>
     function loadMD(url) {
@@ -32,25 +36,81 @@
     }
 </script>
 
-<body>
+<body class="mdc-typography">
+    <aside class="mdc-drawer mdc-drawer--dismissible">
+        <div class="mdc-drawer__content">
+            <div class="mdc-list">
+                <a class="mdc-list-item mdc-list-item--activated" href="#" aria-current="page">
+                    <span class="mdc-list-item__ripple"></span>
+                    <i class="material-icons mdc-list-item__graphic" aria-hidden="true">inbox</i>
+                    <span class="mdc-list-item__text">Inbox</span>
+                </a>
+                <a class="mdc-list-item" href="#">
+                    <span class="mdc-list-item__ripple"></span>
+                    <i class="material-icons mdc-list-item__graphic" aria-hidden="true">send</i>
+                    <span class="mdc-list-item__text">Outgoing</span>
+                </a>
+                <a class="mdc-list-item" href="#">
+                    <span class="mdc-list-item__ripple"></span>
+                    <i class="material-icons mdc-list-item__graphic" aria-hidden="true">drafts</i>
+                    <span class="mdc-list-item__text">Drafts</span>
+                </a>
+            </div>
+        </div>
+    </aside>
+
+    <div class="mdc-drawer-app-content">
+        <header class="mdc-top-app-bar app-bar" id="app-bar">
+            <div class="mdc-top-app-bar__row">
+                <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+                    <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button">menu</button>
+                    <span class="mdc-top-app-bar__title">Dismissible Drawer</span>
+                </section>
+            </div>
+        </header>
+
+        <main class="main-content" id="main-content">
+            <div class="mdc-top-app-bar--fixed-adjust">
+                App Content
+            </div>
+        </main>
+    </div>
+
+    <script>
+
+        const listEl = document.querySelector('.mdc-drawer .mdc-list');
+        const mainContentEl = document.querySelector('.main-content');
+
+        listEl.addEventListener('click', (event) => {
+            drawer.open = false;
+        });
+
+        document.body.addEventListener('MDCDrawer:closed', () => {
+            mainContentEl.querySelector('input, button').focus();
+        });
+    </script>
+
+    <!-- Render textfield component -->
+    <!-- <label class="mdc-text-field mdc-text-field--filled">
+        <span class="mdc-text-field__ripple"></span>
+        <span class="mdc-floating-label" id="my-label">Label</span>
+        <input type="text" class="mdc-text-field__input" aria-labelledby="my-label">
+        <span class="mdc-line-ripple"></span>
+    </label> -->
+
+    <!-- Instantiate single textfield component rendered in the document -->
+    <!-- <script>
+        mdc.textField.MDCTextField.attachTo(document.querySelector('.mdc-text-field'));
+    </script> -->
+
     <div>
 
         <div id="content"></div>
-        <div id="app"></div>
     </div>
 </body>
 
 <script>
 
-    function App() {
-        return (
-            <Button variant="contained" color="primary">
-                你好，世界
-            </Button>
-        );
-    }
-
-    ReactDOM.render(<App />, document.querySelector('#app'));
     loadMD("README.md");
 </script>
 
