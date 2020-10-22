@@ -3,8 +3,18 @@
 
 <head>
     <meta charset="utf-8" />
+    <meta name="referrer" content="origin">
     <title>Marked in the browser</title>
 </head>
+
+<script src="./react.development.js" referrerpolicy="origin"></script>
+<script src="./react-dom.development.js"></script>
+<script src="./material-ui.production.min.js" ></script>
+<script src="./babel.min.js"></script>
+<!-- Fonts to support Material Design -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+<!-- Icons to support Material Design -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 
 <script>
     function loadMD(url) {
@@ -13,7 +23,6 @@
         //监听响应
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4 && (xhr.status === 200 || xhr.status === 304)) {
-                //   　　　　　　console.log(xhr.responseText);
                 document.getElementById('content').innerHTML =
                     marked(xhr.responseText);
             }
@@ -24,17 +33,25 @@
 </script>
 
 <body>
-    <div id="content"></div>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script>
-        // document.getElementById('content').innerHTML =
-        //     marked('# Marked in the browser\n\nRendered by **marked**.');
-        loadMD("README.md");
-    </script>
+    <div>
+
+        <div id="content"></div>
+        <div id="app"></div>
+    </div>
 </body>
 
-<!-- <script>
+<script>
+
+    function App() {
+        return (
+            <Button variant="contained" color="primary">
+                你好，世界
+            </Button>
+        );
+    }
+
+    ReactDOM.render(<App />, document.querySelector('#app'));
     loadMD("README.md");
-</script> -->
+</script>
 
 </html>
