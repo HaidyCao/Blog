@@ -1,1 +1,40 @@
-Hello
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Marked in the browser</title>
+</head>
+
+<script>
+    function loadMD(url) {
+        //创建XMLHttpRequest
+        let xhr = new XMLHttpRequest();
+        //监听响应
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && (xhr.status === 200 || xhr.status === 304)) {
+                //   　　　　　　console.log(xhr.responseText);
+                document.getElementById('content').innerHTML =
+                    marked(xhr.responseText);
+            }
+        };
+        xhr.open("GET", url, true);
+        xhr.send();
+    }
+</script>
+
+<body>
+    <div id="content"></div>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        // document.getElementById('content').innerHTML =
+        //     marked('# Marked in the browser\n\nRendered by **marked**.');
+        loadMD("README.md");
+    </script>
+</body>
+
+<!-- <script>
+    loadMD("README.md");
+</script> -->
+
+</html>
