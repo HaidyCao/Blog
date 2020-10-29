@@ -1,0 +1,94 @@
+@media (prefers-color-scheme: no-preference) {
+    body {
+        background-color: #121212;
+        color: #e3e3e3;
+    }
+    div {
+        border-color: #353535;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    body {
+        background-color: #F1F1F1;
+        color: #333333;
+    }
+    div {
+        border-color: #a1a1a1;
+    }
+
+    header {
+
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .mdc-theme--background {
+        background-color: #121212;
+        color: #e3e3e3;
+    }
+    div {
+        border-color: #353535;
+    }
+
+    .mdc-top-app-bar {
+        background-color: darkblue;
+    }
+
+    .mdc-drawer .mdc-list-item {
+        color: #9E9E9E;
+    }
+
+    .mdc-drawer .mdc-list-item__graphic {
+        color: #9E9E9E;
+    }
+
+    .mdc-drawer .mdc-list-item--activated .mdc-list-item__graphic {
+        color: #9E9E9E;
+    }
+
+    .mdc-list-item {
+        color: #F1F1F1;
+    }
+
+    :not(.mdc-list-item--disabled).mdc-list-item .mdc-list-item__ripple::after {
+        background-color: rgb(255 255 255);
+    }
+
+    .index-list-item__secondary-text {
+        color: #e0e0e0;
+    }
+
+    :root {
+        --mdc-theme-primary: rgba(255,255,255,.87);
+        --mdc-theme-background: #121212;
+    }
+}
+
+.mdc-list--two-line .mdc-list-item {
+    height: 96px;
+}
+
+.mdc-list-item__primary-text {
+    font-size: 1.5rem;
+    margin-bottom: -10px;
+}
+
+.mdc-list-item__secondary-text {
+    font-size: 1rem;
+    padding-left: 0.25rem;
+}
+
+.mdc-list-item__three-text {
+    font-size: 0.75rem;
+    padding-left: 0.5rem;
+}
+
+body {
+    margin: 0;
+}
+
+#content {
+    margin: 1em;
+}
+

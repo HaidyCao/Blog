@@ -8,88 +8,24 @@
     <!-- Required styles for Material Web -->
     <!--<link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">-->
     <link rel="stylesheet" href="./material-components-web.min.css">
+    <link rel="stylesheet" href="./index.css">
 
     <!-- Required Material Web JavaScript library -->
     <!--<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>-->
     <script src="./material-components-web.min.js"></script>
+    <script src="jquery-3.5.1.min.js"></script>
 
     <script src="./marked.min.js"></script>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
-    <style>
-        @media (prefers-color-scheme: no-preference) {
-            body {
-                background-color: #121212;
-                color: #e3e3e3;
-            }
-            div {
-                border-color: #353535;
-            }
-        }
-
-        @media (prefers-color-scheme: light) {
-            body {
-                background-color: #F1F1F1;
-                color: #333333;
-            }
-            div {
-                border-color: #a1a1a1;
-            }
-
-            header {
-
-            }
-        }
-
-        @media (prefers-color-scheme: dark) {
-            .mdc-theme--background {
-                background-color: #121212;
-                color: #e3e3e3;
-            }
-            div {
-                border-color: #353535;
-            }
-
-            .mdc-top-app-bar {
-                background-color: darkblue;
-            }
-
-            .mdc-drawer .mdc-list-item {
-                color: #9E9E9E;
-            }
-
-            .mdc-drawer .mdc-list-item__graphic {
-                color: #9E9E9E;
-            }
-
-            .mdc-drawer .mdc-list-item--activated .mdc-list-item__graphic {
-                color: #9E9E9E;
-            }
-
-            :root {
-                --mdc-theme-primary: rgba(255,255,255,.87);
-                --mdc-theme-background: #121212;
-
-            }
-        }
-
-        body {
-            margin: 0;
-        }
-
-        #content {
-            margin: 1em;
-        }
-    </style>
 </head>
 
 <body class="mdc-theme--background">
 
-<aside class="mdc-drawer mdc-drawer--modal mdc-theme--background">
+<aside class="mdc-drawer mdc-theme--background mdc-drawer--dismissible">
     <div class="mdc-drawer__content">
         <nav class="mdc-list">
-            <a class="mdc-list-item mdc-list-item--activated" href="javascript:loadMD('README.md')" aria-current="page"
+            <a class="mdc-list-item mdc-list-item--activated" href="javascript:loadIndexList(0)" aria-current="page"
                tabindex="0">
                 <span class="mdc-list-item__ripple"></span>
                 <i class="material-icons mdc-list-item__graphic" aria-hidden="true">rss_feed</i>
@@ -111,67 +47,26 @@
     </div>
 </aside>
 
-<div class="mdc-drawer-scrim"></div>
-<div>
-    <div class="mdc-drawer-app-content">
-        <header class="mdc-top-app-bar mdc-top-app-bar--fixed" id="app-bar">
-            <div class="mdc-top-app-bar__row">
-                <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-                    <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button" id="menu">menu
-                    </button>
-                    <span class="mdc-top-app-bar__title">Dismissible Drawer</span>
-                </section>
-            </div>
-        </header>
+<div class="mdc-drawer-app-content">
+    <header class="mdc-top-app-bar" id="app-bar">
+        <div class="mdc-top-app-bar__row">
+            <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+<!--                <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button" id="menu">menu-->
+<!--                </button>-->
+                <span class="mdc-top-app-bar__title">首页</span>
+            </section>
+        </div>
+    </header>
 
-        <main class="main-content" id="main-content">
-            <div class="mdc-top-app-bar--fixed-adjust">
-                <div>
-
-                    <div id="content"></div>
-                </div>
-                App Content
-                <br/>
-                App Content
-                <br/>
-                App Content<br/>
-                App Content<br/>
-                App Content<br/>
-                App Content<br/>
-                App Content<br/>
-                App Content<br/>
-                App Content<br/>
-                App Content<br/>
-                App Content<br/>
-                App Content<br/>
-                App Content<br/>
-                App Content<br/>
-                App Content<br/>
-                App Content<br/>
-                App Content<br/>
-                App Content<br/>
-                App Content<br/>
-                App Content<br/>
-                App Content<br/>
-                App Content<br/>
-                App Content<br/>
-                App Content<br/>
-                App Content<br/>
-                App Content<br/>
-                App Content<br/>
-                App Content<br/>
-                App Content<br/>
-                App Content<br/>
-                App Content<br/>
-                App Content<br/>
-                App Content<br/>
-                App Content<br/>
-                App Content<br/>
-                App Content
-                <br/>
+    <main class="main-content" id="main-content">
+        <div class="mdc-top-app-bar--fixed-adjust">
+            <div>
+                <div id="content"></div>
             </div>
-        </main>
-    </div>
+
+            <footer style="width: 100%; text-align: center;">©2020 Haidy | Posted by: Haidy</footer>
+        </div>
+    </main>
 </div>
 
 <script>
@@ -180,13 +75,29 @@
     const mainContentEl = document.querySelector('.main-content');
     const drawer = mdc.drawer.MDCDrawer.attachTo(document.querySelector(".mdc-drawer"))
 
-    listEl.addEventListener('click', (event) => {
-        drawer.open = true
-    });
+    // listEl.addEventListener('click', (event) => {
+    //     drawer.open = true
+    // });
+    drawer.open = true
 
     document.body.addEventListener('MDCDrawer:closed', () => {
         // mainContentEl.querySelector('input, button').focus();
     });
+
+    const list = new mdc.list.MDCList(document.querySelector('.mdc-list'));
+    const listItemRipples = list.listElements.map((listItemEl) => new mdc.ripple.MDCRipple(listItemEl));
+
+    function loadIndexList(page) {
+        $.get("index_recent.json", function (data) {
+            let html = "<ul class=\"mdc-list mdc-list--two-line\">";
+            for (let i in data.data) {
+                html += data.html.replace("__TITLE__", data.data[i].title).replace("__SUBTITLE__", data.data[i].subtitle).replace("__DATE__", data.data[i].date)
+            }
+            html += "<ul />"
+            document.querySelector('#content').innerHTML = html
+        })
+
+    }
 
     function loadMD(url) {
         //创建XMLHttpRequest
@@ -200,10 +111,11 @@
         xhr.open("GET", url, true);
         xhr.send();
 
-        drawer.open = false
+        // drawer.open = false
     }
 
-    loadMD("README.md");
+    // loadMD("index.md");
+    loadIndexList(0)
 </script>
 
 </body>
