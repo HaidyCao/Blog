@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="utf-8"/>
+    <title>博客</title>
+
+    <!-- Required styles for Material Web -->
+    <!--<link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">-->
+    <link rel="stylesheet" href="./material-components-web.min.css">
+    <link rel="stylesheet" href="./index.css">
+
+    <!-- Required Material Web JavaScript library -->
+    <!--<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>-->
+    <script src="./material-components-web.min.js"></script>
+    <script src="jquery-3.5.1.min.js"></script>
+
+    <script src="./marked.min.js"></script>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+
+<body class="mdc-theme--background">
+
+<div class="mdc-drawer-app-content">
+    <main class="main-content" id="main-content">
+        <div>
+            <div>
+                <div id="content"></div>
+            </div>
+
+            <footer style="width: 100%; text-align: center;">©2020 Haidy | Posted by: Haidy</footer>
+        </div>
+    </main>
+</div>
+
+<script>
+    function loadMD(url) {
+        $.get(url, function (data) {
+            document.getElementById('content').innerHTML = marked(data);
+        })
+    }
+
+    function getUriParam(name) {
+        let url = document.location.toString()
+        let arr = url.split("?")
+        if (arr.length < 1) {
+            return ""
+        }
+
+        let params = arr[1].split("&")
+        let param
+        for (let i = 0; i < params.length; i++) {
+            param = params[i].split("=")
+            if (param != null && param[0] === name) {
+                return params[1]
+            }
+        }
+
+        return ""
+    }
+
+    function getParamsToString() {
+        let url = document.location.toString()
+        let arr = url.split("?")
+        if (arr.length < 1) {
+            return ""
+        }
+
+        return arr[1]
+    }
+
+    loadMD(getParamsToString())
+</script>
+
+</body>
+
+</html>

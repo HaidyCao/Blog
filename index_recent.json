@@ -1,9 +1,16 @@
 {
   "data": [
     {
+      "title": "Android window",
+      "subtitle": "android的界面重要组成: window",
+      "date": "2020-11-02",
+      "file": "android/window.md"
+    },
+    {
       "title": "Dex 文件格式",
       "subtitle": "dex文件是Android应用的重要的组成部分...",
-      "date": "2020-10-26"
+      "date": "2020-10-26",
+      "file": "dex.md"
     },
     {
       "title": "Smali",
@@ -66,5 +73,5 @@
       "date": "2020-10-29"
     }
   ],
-  "html": "<li class=\"mdc-list-item\">\n    <span class=\"mdc-list-item__ripple\"></span>\n    <span class=\"mdc-list-item__text\">\n      <span class=\"mdc-list-item__primary-text\">\n          __TITLE__\n      </span>\n      <span class=\"mdc-list-item__secondary-text index-list-item__secondary-text\">\n          __SUBTITLE__\n      </span>\n        <span class=\"index-list-item__secondary-text mdc-list-item__three-text index-list-item__secondary-text\">\n          __DATE__\n      </span>\n    </span>\n</li>"
+  "html": "<li class=\"mdc-list-item\" onclick=\"javascript:openDetail('__FILE__')\">\n    <span class=\"mdc-list-item__ripple\"></span>\n    <span class=\"mdc-list-item__text\">\n      <span class=\"mdc-list-item__primary-text\">\n          __TITLE__\n      </span>\n      <span class=\"mdc-list-item__secondary-text index-list-item__secondary-text\">\n          __SUBTITLE__\n      </span>\n        <span class=\"index-list-item__secondary-text mdc-list-item__three-text index-list-item__secondary-text\">\n          __DATE__\n      </span>\n    </span>\n</li>"
 }

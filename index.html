@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8"/>
-    <title>Marked in the browser</title>
+    <title>博客</title>
 
     <!-- Required styles for Material Web -->
     <!--<link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">-->
@@ -31,17 +31,17 @@
                 <i class="material-icons mdc-list-item__graphic" aria-hidden="true">rss_feed</i>
                 <span class="mdc-list-item__text">首页</span>
             </a>
-            <a class="mdc-list-item" href="javascript:loadMD('dex.md')">
+            <a class="mdc-list-item" href="javascript:loadMD('note.md')">
                 <span class="mdc-list-item__ripple"></span>
                 <i class="material-icons mdc-list-item__graphic" aria-hidden="true">rss_feed</i>
                 <span class="mdc-list-item__text">
-                    Dex (2020-10-28)
+                    随手记
                 </span>
             </a>
             <a class="mdc-list-item" href="#">
                 <span class="mdc-list-item__ripple"></span>
                 <i class="material-icons mdc-list-item__graphic" aria-hidden="true">rss_feed</i>
-                <span class="mdc-list-item__text">Drafts</span>
+                <span class="mdc-list-item__text">关于</span>
             </a>
         </nav>
     </div>
@@ -86,17 +86,25 @@
 
     const list = new mdc.list.MDCList(document.querySelector('.mdc-list'));
     const listItemRipples = list.listElements.map((listItemEl) => new mdc.ripple.MDCRipple(listItemEl));
+    const a = new mdc.list.MDCListFoundation(document.querySelector('.mdc-list'))
+    a.handleClick((ev)=> {
+        console.log(ev)
+    })
 
     function loadIndexList(page) {
         $.get("index_recent.json", function (data) {
             let html = "<ul class=\"mdc-list mdc-list--two-line\">";
             for (let i in data.data) {
-                html += data.html.replace("__TITLE__", data.data[i].title).replace("__SUBTITLE__", data.data[i].subtitle).replace("__DATE__", data.data[i].date)
+                html += data.html.replace("__TITLE__", data.data[i].title).replace("__SUBTITLE__", data.data[i].subtitle).replace("__DATE__", data.data[i].date).replace("__FILE__", data.data[i].file)
             }
             html += "<ul />"
             document.querySelector('#content').innerHTML = html
         })
 
+    }
+
+    function openDetail(file) {
+        window.open('detail.html?'+ file, '_blank')
     }
 
     function loadMD(url) {
